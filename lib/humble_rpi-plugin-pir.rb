@@ -39,7 +39,7 @@ class HumbleRPiPluginPir
     notifier = @notifier
     device_id = @device_id
 
-    @pins.each do |pin|
+    @pins.each.with_index do |pin, i|
       
       after pin: pin.to_i, goes: :high do
         
@@ -47,8 +47,9 @@ class HumbleRPiPluginPir
         
         if Time.now > t1 + ChronicDuration.parse(duration)  then
           
-          notifier.notice "%s/motion: detected %s times within the past %s" \
-                                                % [device_id, count, duration]
+          notifier.notice "%s/motion/%s: " \
+                    + "detected %s times within the past %s" \
+                                            % [device_id, i, count, duration]
           t1 = Time.now
           count = 0
         end

@@ -33,22 +33,24 @@ class HumbleRPiPluginPir
   def start()
 
     count = 0
-    t1 = Time.now - ChronicDuration.parse('1 minute and 10 seconds')
     
     duration = @duration
     notifier = @notifier
     device_id = @device_id
-
+    
+    t1 = Time.now - (ChronicDuration.parse(duration) + 10)    
+    
+    puts 'ready to detect motion'
+    
     @pins.each.with_index do |pin, i|
-      
+
       after pin: pin.to_i, goes: :high do
         
         count += 1
-        
+
         if Time.now > t1 + ChronicDuration.parse(duration)  then
-          
-          notifier.notice "%s/motion/%s: " \
-                    + "detected %s times within the past %s" \
+
+          notifier.notice "%s/motion/%s: detected %s times within the past %s" \
                                             % [device_id, i, count, duration]
           t1 = Time.now
           count = 0

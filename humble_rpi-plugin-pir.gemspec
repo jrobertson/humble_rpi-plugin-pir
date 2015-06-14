@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name = 'humble_rpi-plugin-pir'
-  s.version = '0.1.1'
+  s.version = '0.1.2'
   s.summary = 'A humble_rpi plugin which detects motion for 1 or more PIR sensor.'
-  s.description = 'This plugin can be tested in isolation with the Raspberry Pi.'
+  s.description = 'A humble_rpi plugin which detects motion for 1 or more PIR sensor. This plugin can be tested in isolation with the Raspberry Pi.'
   s.authors = ['James Robertson']
   s.files = Dir['lib/humble_rpi-plugin-pir.rb']
   s.add_runtime_dependency('pi_piper', '~> 1.3', '>=1.3.2')  
